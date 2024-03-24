@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapChat</title>
+</head>
+<body style="background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(96deg, rgba(2,0,36,1) 0%, rgb(0, 0, 105) 25%, rgba(9,9,121,1) 69%, rgba(0,212,212,1) 100%); color: lightgray; font-weight: 600;">
+  <div id="messagesContainer" style="margin-bottom: 4.2rem;">
+    <div style="border: 1px solid black; width: 100% !important;">
+      <div>
+        <p style="font-weight: 500; font-size: small; cursor: default;">Chat Purged:</p>
+        <p style="cursor: default;">Be the first to write a message!</p>
+      </div>
+  </div>
+  </div>
+    <div style="position: fixed; left: 0; bottom: 0; padding: 1rem; border: 1px solid white; min-width: 90%; width: 91.3%; backdrop-filter: blur(10px);">
+        <form id="uploadForm" >
+          <p style="position: absolute; top: -38px; cursor: default;" title="You are visible as <%- username %>">Send a Message!</p>
+            <div>
+                <textarea type="text" id="messageText" name="messageText" autocomplete="off" accept="text" maxlength="1350" required style="width: 80%; resize: none;"></textarea>
+            </div>
+            <button class="theTargetButton" type="submit" style="position: absolute; right: 20px; bottom: 18px; border: none; border-radius: 3px; background-color: blue; color: white; text-transform: uppercase; font-weight: 600; padding: .3rem;">Send</button>
+        </form>
+    </div>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+      const messagesContainer = document.getElementById("messagesContainer");
+
+      // Initialize Socket.io connection
+      const socket = io();
+
+      // Listen for current messages from the server
+      socket.on('currentMessages', (messages) => {
+          renderMessages(messages);
+      });
+
+      // Listen for new messages from the server
+      socket.on('newMessage', (message) => {
+          renderMessage(message);
+      });
+
+      // Function to render a single message
+      function renderMessage(message) {
+          const messageElement = document.createElement("div");
+          messageElement.innerHTML = `<div style="border-bottom: 1px solid white;"><p style="font-weight: 500; font-size: small;">${message.username}:</p><p>${message.message}</p></div>`;
+          messagesContainer.appendChild(messageElement);
+      }
+
+      // Function to render multiple messages
+      function renderMessages(messages) {
+          messagesContainer.innerHTML = "";
+          messages.forEach(message => {
+              renderMessage(message);
+          });
+      }
+
+      // Add event listener for sending messages
+      const button = document.querySelector('.theTargetButton');
+      button.addEventListener("click", () => {
+          event.preventDefault();
+          const username = "<%- username %>" // Assuming you have an input field for username
+          const messageText = document.getElementById("messageText").value;
+          socket.emit('sendMessage', { username, messageText });
+          document.getElementById("messageText").value = "";
+      });
+        const targetTracking = document.getElementById("uploadForm");
+      </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapChat</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(96deg, rgba(2,0,36,1) 0%, rgb(0, 0, 105) 25%, rgba(9,9,121,1) 69%, rgba(0,212,212,1) 100%);
+            color: lightgray;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #009595;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #013ab6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="cursor: default;">Welcome to ZapChat</h1>
+        <p style="cursor: default;">Real-Time Vanishing Chat</p>
+        <button class="cta-button" onclick="redirectPage('/chat')">Start Chatting</button>
+    </div>
+    <script>
+        function redirectPage(link) {
+            window.location.href = link;
+        }
+    </script>
+</body>
+</html>
