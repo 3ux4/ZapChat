@@ -1,5 +1,5 @@
 # ZapChat
-ZapChat, unencrypted real-time local messaging service made in NodeJS
+ZapChat, NoDB real-time messaging service made in NodeJS
 
 ## Overview
 
@@ -26,4 +26,4 @@ The service should now be live on port 8000. If you have an environment variable
 
 Using pm2 to keep the process alive is recommended, although chat will get purged often.
 
-ZapChat is licensed under the MiT Licence by [3ux4 (aka Ghost)](https://github.com/3ux4)
+ZapChat is licensed under the MiT Licence by [3ux4 (aka "Isabella" or "BellaGhxst")](https://github.com/3ux4)
