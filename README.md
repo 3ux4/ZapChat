@@ -14,7 +14,7 @@ ZapChat allows users to exchange messages in real-time over the internet. It's d
 - Minimum of 20Mib Storage for all the packages that are installed.
 - *Not required:* Preferrably pm2, to keep the service alive.
 
-## Starting the service
+**Starting the service**
 
 > *ZapChat has a help command built in, accessed via `npm run help`.*
 
